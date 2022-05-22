@@ -10,8 +10,10 @@ from .serializers import ClientTrainerSerializer
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def client_relations(request):
-    trainer = ClientTrainer.objects.filter(client = request.user.id)
+    print(request.user.id)
+    trainer = ClientTrainer.objects.get(client = request.user)
     serializer = ClientTrainerSerializer(trainer)
+    print(serializer.data)
     return Response(serializer.data)
 
 @api_view(['POST'])

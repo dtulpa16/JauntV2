@@ -20,4 +20,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/auth/', include('authentication.urls')),
     path('api/cars/', include('cars.urls')),
+    path('api/client-trainer/', include('client_trainers.urls')),
+    path('api/workouts/', include('client_workouts.urls')),
+    path('api/forums/', include('forum_posts.urls')),
+    path('api/blog/', include('trainer_blogs.urls')),
+    path('api/trainer-reviews/', include('trainer_reviews.urls')),
 ]
