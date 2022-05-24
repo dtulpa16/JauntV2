@@ -72,20 +72,20 @@ def new_reply(request):
 @api_view(['PUT'])
 @permission_classes([IsAuthenticated])
 def update_reply(request,pk):
-        reply = get_object_or_404(ForumReply, pk=pk)
+        reply = ForumReply.objects.get(pk=pk)
         serializer = ForumReplySerializer(reply, data = request.data, partial=True)
         if serializer.is_valid():
-            serializer.update(user=request.user)
+            serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['PUT'])
 @permission_classes([IsAuthenticated])
 def like_reply(request,pk):
-        reply = get_object_or_404(ForumReply, pk=pk)
-        reply.likes + 1
+        reply = ForumReply.objects.get(pk=pk)
+        reply.likes = reply.likes + 1
         serializer = ForumReplySerializer(reply, data = request.data, partial=True)
         if serializer.is_valid():
-            serializer.update(user=request.user)
+            serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

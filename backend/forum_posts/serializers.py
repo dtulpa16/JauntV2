@@ -11,6 +11,6 @@ class ForumPostSerializer(serializers.ModelSerializer):
 class ForumReplySerializer(serializers.ModelSerializer):
     class Meta:
         model = ForumReply
-        fields = ['id','post','user','likes']
-        depth = 2
-    post_id = serializers.IntegerField(write_only = True)
+        fields = ['id','post','user','likes', 'body']
+        depth = 1
+    #post_id = serializers.IntegerField(write_only = True)
